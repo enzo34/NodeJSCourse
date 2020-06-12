@@ -19,21 +19,11 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.delete('/books/:id', booksController.deleteBook);
+app.put('/books/:id', booksController.updateBook);
+app.get('/books/:id', booksController.getBookById);
 app.post('/books', booksController.createBook);
-app.get('/books', (req, res, next) => {
-    const books = [
-        {
-            _id: 1,
-            name: "Test",
-            description: "lorem ipsum"
-        },
-        {
-            _id: 2,
-            name: "Test",
-            description: "lorem ipsum"
-        }
-    ]
-    res.status(200).json(books)
-})
+app.get('/books', booksController.getBooks);
+
 
 module.exports = app;
